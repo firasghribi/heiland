@@ -1,7 +1,5 @@
 "use strict";
 
-const DOT_SIZE = 11;
-
 const $ = (str) => document.querySelectorAll(str);
 
 const selectPoint = function (e) {
@@ -11,6 +9,8 @@ const selectPoint = function (e) {
 const unselectPoint = function (e) {
   this.selectedPoint = null;
 };
+
+const DOT_SIZE = 11;
 
 const drawPoint = (x, y, draw, scope) => {
   const group = draw.group().move(x - DOT_SIZE / 2, y - DOT_SIZE / 2);
@@ -29,17 +29,17 @@ const drawPoint = (x, y, draw, scope) => {
 const drawParallelogram = (posArr, draw) => ({
   obj: draw
     .polygon("")
-    .plot(Mathematic.getParallelogramCoord(posArr))
+    .plot(Maths.getParallelogramCoord(posArr))
     .fill("transparent")
     .stroke("blue")
     .back(),
   pos: posArr,
-  centroid: Mathematic.getParallelogramCentroid(posArr),
-  area: Mathematic.getParallelogramArea(posArr),
+  centroid: Maths.getParallelogramCentroid(posArr),
+  area: Maths.getParallelogramArea(posArr),
 });
 
 const drawCircle = (pos, area, draw) => {
-  const radius = Mathematic.getCircleRadius(area);
+  const radius = Maths.getCircleRadius(area);
   const group = draw
     .group()
     .move(pos[0] - radius, pos[1] - radius)
@@ -50,9 +50,13 @@ const drawCircle = (pos, area, draw) => {
     .fill("transparent")
     .stroke("#eab308");
   const text = group.text(`x:${pos[0]}, y:${pos[1]}`).move(radius / 2, radius);
+  // convert the area to pixel square unit and display it
+  const areaText = group
+    .text(`Area : ${Math.round(area)} px²`)
+    .move(radius / 2, radius + 20);
   return {
     obj: group,
-    text: text,
+    text: text + areaText,
     pos: pos,
   };
 };
@@ -66,18 +70,18 @@ const redraw = function (e) {
     p.text.plain(`x:${x}, y:${y}`);
     p.pos[0] = x;
     p.pos[1] = y;
-    resetFigure.bind(this)();
+    resetShapes.bind(this)();
   }
 };
 
-const resetFigure = function () {
+const resetShapes = function () {
   this.parallelogram.obj.remove();
   this.circle.obj.remove();
   this.circle = null;
   this.parallelogram = null;
 };
 
-const onClickFirst = function (e) {
+const onClickDraw = function (e) {
   if (this.dotArr.length < 3) {
     const x = e.pageX;
     const y = e.pageY;
@@ -100,18 +104,15 @@ const onClickFirst = function (e) {
 
 const reset = function () {
   this.dotArr.forEach((i) => i.obj.remove());
-  resetFigure.bind(this)();
+  resetShapes.bind(this)();
   this.dotArr.length = 0;
   this.selectedPoint = null;
 
   $("#canvas")[0].innerHTML = null;
   this.draw = SVG("canvas").size("100%", "100%");
-  this.draw.on("click", onClickFirst, this);
+  this.draw.on("click", onClickDraw, this);
   this.draw.on("mousemove", redraw, this);
   this.draw.on("mouseup", unselectPoint, this);
-
-  $("#reset")[0].style.display = $(".about")[0].style.display = "none";
-  $("#about")[0].style.display = "";
 };
 
 (function () {
@@ -122,13 +123,9 @@ const reset = function () {
     dotArr: [],
   };
 
-  scope.draw.on("click", onClickFirst, scope);
+  scope.draw.on("click", onClickDraw, scope);
   scope.draw.on("mousemove", redraw, scope);
   scope.draw.on("mouseup", unselectPoint, scope);
 
   $("#reset")[0].addEventListener("click", reset.bind(scope));
-  $("#about")[0].addEventListener("click", function () {
-    $(".about")[0].style.display = "";
-    $("#about")[0].style.display = "none";
-  });
 })();
