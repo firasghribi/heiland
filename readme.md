@@ -47,6 +47,5 @@ $ tree
     ├── style.css
    
 ```
-```
 
 
