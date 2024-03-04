@@ -1,0 +1,215 @@
+<html>
+
+<head>
+    <title>JavaScript assignment - Heiland</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+    <!-- Header element bar -->
+    <header class="fixed w-full px-3 py-2 bg-gray-100 shadow-md">
+        <div class="flex justify-between items-center">
+            <h3 class="text-lg font-bold">Heiland JS Drawer</h3>
+            <nav>
+                <ul class="flex space-x-6">
+                    <li>
+                        <button id="openModal" type="button"
+                            class="inline-flex items-center gap-x-1.5 px-2.5 py-1.5 text-sm text-gray-900 font-semibold hover:underline hover:text-blue-600 hover:decoration-dotted">
+                            About
+                        </button>
+                    </li>
+                    <li>
+                        <button id="reset" type="button"
+                            class="inline-flex items-center gap-x-1.5 rounded-md bg-blue-600 px-2.5 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600">
+                            Reset
+                        </button>
+                    </li>
+                </ul>
+        </div>
+    </header>
+
+    <!-- main element : white board-->
+    <main>
+        <canva id="canvas" />
+    </main>
+    <div id="modal"
+        class="px-48 py-32 fixed inset-0 bg-gray-950 bg-opacity-75 hidden items-center justify-center backdrop-blur-sm overflow-y-auto">
+        <!-- Modal Content -->
+        <div class="max-w-4xl mx-auto flex justify-center ">
+            <div class="bg-white p-6 rounded-2xl shadow-lg">
+                <h1 class="text-2xl font-bold mb-4">About Heiland JS Drawer</h1>
+                <div>
+                    <p>
+                        Heiland JS Drawer is a user-friendly web application that allows users to effortlessly create
+                        geometric
+                        shapes and constructions within the browser environment. With its intuitive interface, users can
+                        select
+                        three arbitrary points within the client area of the browser, and the application dynamically
+                        generates
+                        visual representations based on these points.
+                    </p>
+                    <br />
+                    <p>
+                        Upon selecting three points, the application highlights their locations by drawing red circles
+                        with
+                        a
+                        diameter of 11 pixels, centered on each selected point. This feature provides users with a clear
+                        visual
+                        reference for the points they've chosen.
+                    </p>
+                    <br />
+                    <p>
+                        In addition to highlighting the selected points, Heiland JS Drawer utilizes advanced geometric
+                        algorithms to create two additional shapes based on the user's input:
+                    </p>
+                    <br />
+                    <ul class="list-disc space-y-6 ml-6">
+                        <li>
+                            <p>
+                                <b>Blue Parallelogram:</b> This shape is constructed using the three points selected by
+                                the
+                                user. The application calculates the necessary parameters to draw a parallelogram,
+                                ensuring that it accurately represents the geometric properties defined by the user's
+                                input. The parallelogram is drawn in blue, providing a distinct visual contrast to the
+                                red circles representing the selected points.
+
+                            </p>
+                        </li>
+                        <li>
+                            <p>
+                                <b>Yellow Circle:</b> Based on the parallelogram created using the three selected
+                                points,
+                                Heiland
+                                JS Drawer calculates a circle with the same area and center of mass as the
+                                parallelogram.
+                                This circle is drawn in yellow, providing users with a comprehensive visual
+                                representation
+                                of the geometric relationships between the selected points and the constructed shapes.
+                            </p>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <div class="divide-y divide-gray-900/10 py-12">
+                        <h2 class="text-2xl font-bold leading-10 tracking-tight text-gray-900">Frequently Asked Question
+                            - How it works ?</h2>
+                        <dl class="mt-4 space-y-8 divide-y divide-gray-900/10">
+                            <div class="pt-8 lg:grid lg:grid-cols-12 lg:gap-8">
+                                <dt class="text-base font-semibold leading-7 text-gray-900 lg:col-span-5">How to draw
+                                    ? </dt>
+                                <dd class="mt-4 lg:col-span-7 lg:mt-0 space-y-6">
+                                    <p class="text-base leading-7">
+                                        Drawing shapes never been so easy, it only requires three steps :</p>
+                                    <p class="text-base leading-7"><b>1. </b>
+                                        First , you should
+                                        refer to the white
+                                        board as identified in the picture below with a red rectangle.</p>
+                                    <image src="./assets/images/img1.png" alt="white board"
+                                        class="w-full h-fit object-cover" />
+                                    <p class="text-base leading-7">
+                                        <b>2. </b>Secondly, In the red rectangle area, with your
+                                        mouse, select 3 seperate position and click on each accordingly. Each time you
+                                        click a red dot appears.
+                                    </p>
+                                    <p class="text-base leading-7">
+                                        <b>3. </b>Last and after the third click, the
+                                        parallelogram and the circle will be drawn automatically.
+                                    </p>
+                                    <p>
+                                        In the following video, you can see how to click on the white board to draw the
+                                        shapes.
+                                    </p>
+                                    <video controls class="w-full h-fit object-cover">
+                                        <source src="./assets/videos/videoClicks.mov" type="video/mp4">
+                                        Your browser does not support the video tag.
+                                </dd>
+                            </div>
+
+                            <div class="pt-8 lg:grid lg:grid-cols-12 lg:gap-8">
+                                <dt class="text-base font-semibold leading-7 text-gray-900 lg:col-span-5">How to
+                                    reshape ? </dt>
+                                <dd class="mt-4 lg:col-span-7 lg:mt-0 space-y-6">
+                                    <p class="text-base leading-7">To reshape the existing shapes : </p>
+                                    <p class="text-base leading-7"><b>1. </b> First, you should
+                                        refer to one of the red dots.</p>
+                                    <p class="text-base leading-7">
+                                        <b>2. </b> Secondly, with your mouse, click on a red dot
+                                        and drag it to a new
+                                        position.
+                                        The
+                                        parallelogram and the circle will be reshaped accordingly.
+                                    </p>
+                                    <p>
+                                        In the following video, you can see how to reshape the shapes by dragging the
+                                        red dots.
+                                    </p>
+                                    <video controls class="w-full h-fit object-cover">
+                                        <source src="./assets/videos/videoReshape.mov" type="video/mp4">
+                                        Your browser does not support the video tag.
+                                </dd>
+                            </div>
+
+                            <div class="pt-8 lg:grid lg:grid-cols-12 lg:gap-8">
+                                <dt class="text-base font-semibold leading-7 text-gray-900 lg:col-span-5">How to
+                                    reset and delete shapes ? </dt>
+                                <dd class="mt-4 lg:col-span-7 lg:mt-0 space-y-6">
+                                    <p class="text-base leading-7">To reset and delete the existing shapes : </p>
+                                    <p class="text-base leading-7"><b>1. </b>First and lastly,
+                                        you only have to click on the blue button <span
+                                            class="px-2 py-1 font-medium bg-blue-500 text-white rounded-lg cursor-pointer hover:bg-blue-600 active:bg-blue-700">Reset</span>
+                                        on the top right of your
+                                        screen. Once you click on it, the shapes will disappear from the screen.</p>
+                                    <p>
+                                        In the following video, you can see how to reset the shapes by clicking on the
+                                        blue reset button.
+                                    </p>
+                                    <video controls class="w-full h-fit object-cover">
+                                        <source src="./assets/videos/videoReset.mov" type="video/mp4">
+                                        Your browser does not support the video tag.
+                                </dd>
+                            </div>
+                            <!-- More questions... -->
+                        </dl>
+                    </div>
+                </div>
+                <div class="flex items-center pt-4 pb-2 border-t border-gray-200 justify-between">
+                    <div>
+                        <p class="text-sm"><a class="underline hover:text-blue-600 cursor-pointer"
+                                href="https://firasghribi.com" target="_blank">Firas GHRIBI</a> © A
+                            Heiland Candidate for frontend position Hamburg 2024</p>
+                    </div>
+                    <div>
+                        <button id="closeModal"
+                            class="bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white font-medium py-1.5 px-4 rounded-md">
+                            Close
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script type="text/javascript" src="./assets/svg.js"></script>
+    <script type="text/javascript" src="./assets/mathematic.js"></script>
+    <script type="text/javascript" src="./assets/script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const openModalButton = document.getElementById('openModal');
+            const closeModalButton = document.getElementById('closeModal');
+            const modal = document.getElementById('modal');
+
+            openModalButton.addEventListener('click', function () {
+                modal.classList.remove('hidden');
+            });
+
+            closeModalButton.addEventListener('click', function () {
+                modal.classList.add('hidden');
+            });
+        });
+    </script>
+
+</body>
+
+</html>
