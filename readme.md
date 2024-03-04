@@ -24,11 +24,7 @@ Firas GHRIBI - front-end developer candidate.
 ## License
 Feel free to use the code as you want, it's a test app, so no license needed.
 
-## Acknowledgments
-* Thanks to Heiland for giving me the opportunity to show my skills.
-
-```
-Structure of the project
+## Structure of the project
 
 ``` bash
 $ tree
@@ -48,4 +44,6 @@ $ tree
    
 ```
 
+## Acknowledgments
+* Thanks to Heiland for giving me the opportunity to show my skills.
 
