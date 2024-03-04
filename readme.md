@@ -15,6 +15,8 @@ it's very simple, double click index.html and the app will be opened in your def
 * [Firebase](https://firebase.google.com/) - Firebase is Google's mobile platform that helps you quickly develop high-quality apps and grow your business.
 * Vanilla JS - No framework used, just pure javascript.
 * HTML5 - The markup language used to build the app.
+* SVG.JS - A lightweight library for manipulating and animating SVG.
+* CSS3 - The style sheet language used to style the app.
 
 ## Authors
 Firas GHRIBI - front-end developer candidate.
@@ -26,8 +28,9 @@ Feel free to use the code as you want, it's a test app, so no license needed.
 * Thanks to Heiland for giving me the opportunity to show my skills.
 
 ```
-show the structure of the project
-```
+Structure of the project
+
+``` bash
 $ tree
 .
 ├── README.md
@@ -38,7 +41,6 @@ $ tree
 │   ├── images
 │   │   ├── img1.png
 │   │   ├── img2.png
-│   │   
 │   ├── maths.js
 │   ├── script.js
 └── css
